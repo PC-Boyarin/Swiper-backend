@@ -55,7 +55,6 @@ export const getAllChannels = async (req, res) => {
 
     try {
         const channels = await pool.query('SELECT * FROM channels WHERE server_id = $1 ORDER BY channels.created_at', [server_id]);
-        console.log('newChannel77');
         return res.status(200).json(channels.rows);
     } catch (err) {
         res.status(500).json({message: err.message})

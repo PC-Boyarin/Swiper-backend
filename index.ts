@@ -8,6 +8,7 @@ import {getAllChannels} from "./src/controllers/client/channels";
 import {getAllMessages} from "./src/controllers/client/message"
 import messageRouter from './src/router/message'
 import channelsRouter from './src/router/channels'
+import serversRouter from './src/router/servers'
 import userRouter from './src/router/user'
 import authRouter from './src/router/auth'
 
@@ -19,7 +20,7 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 
 const corsOptions = {
-	origin: ['http://localhost:5173', 'http://192.168.50.23:3001', 'http://192.168.50.23:5173'],
+	origin: ['http://localhost:5173', 'http://192.168.50.23:3001', 'http://192.168.50.23:5173', 'http://217.177.74.174:3001'],
 	credentials: true,
 	allowedHeaders: [
 		'set-cookie',
@@ -46,13 +47,14 @@ app.use('/api/messages', getAllMessages);
 app.use('/api/messages', messageRouter);
 // app.use('/api/channels', getAllChannels);
 app.use('/api/channels', channelsRouter);
+app.use('/api/servers', serversRouter)
 app.use('/api/user', userRouter)
 app.use('/api/auth', authRouter)
 
 const io = new Server(server, {
 	// pingTimeout: 60000,
 	cors: {
-		origin: ['http://localhost:5173', 'http://192.168.50.23:3000'],
+		origin: ['http://localhost:5173', 'http://192.168.50.23:3000', 'http://217.177.74.174:3000'],
 		credentials: true,
 		methods: ['GET', 'POST'],
 	},
@@ -60,4 +62,4 @@ const io = new Server(server, {
 
 socketIoHandler(io)
 
-server.listen(PORT, '0.0.0.0', () => console.log(`Server running on port ${PORT}`));
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));

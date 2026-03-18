@@ -3,7 +3,8 @@
     "start": "node dist/index.js",
     "dev": "nodemon index.ts",
     "db:reset": "node src/db/schema.js",
-    "db:seed": "node src/db/seed.js"
+    "db:seed": "node src/db/seed.js",
+    "build": "node build"
   },
   "type": "commonjs",
   "dependencies": {

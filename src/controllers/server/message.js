@@ -7,7 +7,7 @@ const createMessage = async (content, user_id, channel_id) => {
         ]);
 
         if(!room.rows[0]) {
-            throw new Error('Комната не найдена', )
+            throw new Error('Комната не найдена')
         }
 
         const newMessage = await pool.query(`
