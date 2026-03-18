@@ -14,7 +14,11 @@ export default function socketIoHandler (io) {
             try {
                 const newMessage = await createMessage(content, user_id, channel_id);
                 console.log('socket3', newMessage)
-                io.in(`${channel_id}`).emit('message:new', newMessage);
+                // io.in(`${channel_id}`).emit('message:new', newMessage);
+                io.to(String(channel_id)).emit('message:new', {
+                    ...newMessage,
+                    channel_id: Number(channel_id)
+                });
                 console.log('socket4', newMessage)
             } catch (error) {
                 console.log('socket5', error)
