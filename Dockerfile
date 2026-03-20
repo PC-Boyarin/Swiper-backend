@@ -1,16 +1,22 @@
-FROM node:18-alpine AS builder
+FROM node:22-alpine AS builder
 
 WORKDIR /app
 
+RUN apk add --no-cache python3 make g++ git
+
 COPY package*.json ./
-RUN npm ci
+RUN npm install
+
+COPY . .
+
+RUN npx tsc
 
 FROM node:18-alpine
 
 WORKDIR /app
 
 COPY --from=builder /app/node_modules ./node_modules
-COPY . .
+COPY --from=builder /app/dist ./dist
 
 RUN addgroup -g 1001 -S nodejs && \
     adduser -S nodejs -u 1001 && \
@@ -20,4 +26,4 @@ USER nodejs
 
 EXPOSE 3000
 
-CMD ["node", "index.ts"]
+CMD ["node", "dist/index.js"]

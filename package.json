@@ -4,7 +4,7 @@
     "dev": "nodemon index.ts",
     "db:reset": "node src/db/schema.js",
     "db:seed": "node src/db/seed.js",
-    "build": "node build"
+    "build": "tsc"
   },
   "type": "commonjs",
   "dependencies": {
