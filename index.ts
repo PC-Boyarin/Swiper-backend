@@ -54,7 +54,7 @@ app.use('/api/auth', authRouter)
 const io = new Server(server, {
 	// pingTimeout: 60000,
 	cors: {
-		origin: ['http://localhost:5173', 'http://192.168.50.23:3000', 'http://217.177.74.174:3000'],
+		origin: ['http://localhost:5173', 'http://192.168.50.23:3000', 'http://217.177.74.174:5173'],
 		credentials: true,
 		methods: ['GET', 'POST'],
 	},
