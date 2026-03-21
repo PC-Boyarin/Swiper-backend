@@ -101,7 +101,7 @@ const loginUser = async (req, res) => {
             { expiresIn: '7d' });
 
         res.cookie('refreshToken', refreshToken, {
-            secure: false, // Временно для HTTP (на VPS без HTTPS)
+            secure: true, // Временно для HTTP (на VPS без HTTPS)
             httpOnly: true,
             maxAge: 24 * 60 * 60 * 1000,
             sameSite: 'strict',

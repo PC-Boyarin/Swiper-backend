@@ -2,7 +2,11 @@ const pool = require('../../db/pool');
 
 const getUser = async (req, res) => {
     try {
-        const {id} = req.user
+        const { id } = req.body
+
+        if(!id) {
+            return res.status(400).json({message:"id is required"});
+        }
 
         const user = await pool.query(
             'SELECT id, username, image_icon FROM users WHERE id = $1',
