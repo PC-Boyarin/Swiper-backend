@@ -20,7 +20,7 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 
 const corsOptions = {
-	origin: ['http://localhost:5173', 'http://192.168.50.23:3001', 'http://192.168.50.23:5173', 'http://217.177.74.174:3001'],
+	origin: ['http://localhost:5173', 'http://217.177.74.174:3001', 'http://217.177.74.174:5173', 'http://217.177.74.174:3001'],
 	credentials: true,
 	allowedHeaders: [
 		'set-cookie',
@@ -54,7 +54,7 @@ app.use('/api/auth', authRouter)
 const io = new Server(server, {
 	// pingTimeout: 60000,
 	cors: {
-		origin: ['http://localhost:5173', 'http://192.168.50.23:3000', 'http://217.177.74.174:5173'],
+		origin: ['http://localhost:5173', 'http://217.177.74.174:3000', 'http://217.177.74.174:5173'],
 		credentials: true,
 		methods: ['GET', 'POST'],
 	},
