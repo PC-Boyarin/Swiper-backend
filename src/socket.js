@@ -9,21 +9,17 @@ export default function socketIoHandler (io) {
         })
 
         socket.on('message:send', async (data) => {
-            console.log('socket2', data)
+
             const { content, user_id, channel_id } = data;
             try {
                 const newMessage = await createMessage(content, user_id, channel_id);
-                console.log('socket3', newMessage)
                 // io.in(`${channel_id}`).emit('message:new', newMessage);
                 io.to(String(channel_id)).emit('message:new', {
                     ...newMessage,
                     channel_id: Number(channel_id)
                 });
-                console.log('socket4', newMessage)
             } catch (error) {
-                console.log('socket5', error)
                 const errorMessage = `Failed to save message. ${error.message}`;
-                console.log('socket6', error)
                 socket.emit('error', {
                     message: errorMessage,
                 });

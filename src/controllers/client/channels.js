@@ -30,7 +30,7 @@ const createChannel = async (req, res) => {
     }
 }
 
-const getCurrentChannels = async (req, res) => {
+const getCurrentChannel = async (req, res) => {
     const { channel_id } = req.body;
 
     if(!channel_id) {
@@ -38,9 +38,9 @@ const getCurrentChannels = async (req, res) => {
     }
 
     try {
-        const channel = await pool.query('SELECT * FROM channels WHERE channel_id = $1', [channel_id]);
+        const channel = await pool.query('SELECT * FROM channels WHERE id = $1', [channel_id]);
 
-        return res.status(200).json(channel.rows);
+        return res.status(200).json(channel.rows[0]);
     } catch (err) {
         res.status(500).json({message: err.message})
     }
@@ -62,7 +62,7 @@ export const getAllChannels = async (req, res) => {
 }
 
 module.exports = {
-    getCurrentChannels,
+    getCurrentChannel,
     getAllChannels,
     createChannel
 }
