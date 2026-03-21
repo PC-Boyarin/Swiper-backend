@@ -20,7 +20,7 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 
 const corsOptions = {
-	origin: ['http://localhost:5173', 'http://217.177.74.174:3001', 'http://217.177.74.174:5173', 'http://217.177.74.174:3001'],
+	origin: ['http://localhost:5173', 'http://217.177.74.174:3001', 'http://217.177.74.174:5173', 'http://217.177.74.174:3000'],
 	credentials: true,
 	allowedHeaders: [
 		'set-cookie',
