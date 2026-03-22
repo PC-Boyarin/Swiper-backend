@@ -105,6 +105,8 @@ const loginUser = async (req, res) => {
             httpOnly: true,
             maxAge: 24 * 60 * 60 * 1000,
             sameSite: 'strict',
+            domain: '217.177.74.174',
+            lax: 'lax' // Изменить с 'lax' на 'strict'
         });
 
         return res.status(200).json({
